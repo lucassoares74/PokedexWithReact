@@ -4,25 +4,29 @@ import { useSearchParams } from "react-router-dom";
 function GridSearch(props) {
   const [searchParams] = useSearchParams();
   const nome = searchParams.get("nome");
-  let nomeme = "";
-  let isArray = false;
-  const [Isarray, setIsarray] = useState(false);
-
-  if (nome) {
-    nomeme = nome;
-  }
-
-  const [nameN, setnameN] = useState(nomeme);
-
-  useEffect(() => {
-    setIsarray(isArray);
-  }, [isArray, nameN]);
+  const [nameN, setnameN] = useState(nome || "");
+  const [filtered, setfiltered] = useState([]);
+  const [isArr, setisArr] = useState(false);
 
   useEffect(() => {
     if (props.pokemonName) {
       setnameN(props.pokemonName);
     }
   }, [props.pokemonName]);
+
+  useEffect(() => {
+    if (!props.loading) {
+      const newList = props.pokemon.filter((a) =>
+        a.name.toLowerCase().includes(nameN.trim().toLowerCase())
+      );
+      setfiltered(newList);
+      if (newList.length !== 0) {
+        setisArr(false);
+      } else {
+        setisArr(true);
+      }
+    }
+  }, [nameN, props.pokemon, props.loading]);
 
   function spinner() {
     return (
@@ -32,15 +36,9 @@ function GridSearch(props) {
     );
   }
 
-  function grid(poke, name) {
-    const newList = poke.filter((a) =>
-      a.name.includes(name.trim(name.toLowerCase()))
-    );
-
-    if (newList.length !== 0) {
-      isArray = false;
-      console.log("esse é mesmo: " + isArray);
-      return newList.map((b) => (
+  function grid() {
+    if (filtered.length !== 0) {
+      return filtered.map((b) => (
         <li
           key={b.id}
           className="bg-white px-12 py-6 items-center justify-center rounded-md"
@@ -50,8 +48,6 @@ function GridSearch(props) {
         </li>
       ));
     } else {
-      isArray = true;
-      console.log("esse é mesmo: " + isArray);
       return (
         <li>
           <div>
@@ -66,12 +62,12 @@ function GridSearch(props) {
     <div>
       <ul
         className={
-          props.loading || Isarray
+          props.loading || isArr
             ? "flex justify-center"
             : "grid lg:grid-cols-4 xl:grid-cols-6 grid-cols-2 gap-6"
         }
       >
-        {props.loading ? spinner() : grid(props.pokemon, nameN)}
+        {props.loading ? spinner() : grid()}
       </ul>
     </div>
   );
