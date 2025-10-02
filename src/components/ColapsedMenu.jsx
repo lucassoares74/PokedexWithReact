@@ -7,10 +7,10 @@ function ColapsedMenu(props) {
       <Link to="/">
         <button>Home</button>
       </Link>
-      <Link to="/">
+      <Link to="/Search">
         <button>Search</button>
       </Link>
-      <Link to="/home">
+      <Link to="/">
         <button>Favorites</button>
       </Link>
     </div>
