@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function GridSearch(props) {
   const [searchParams] = useSearchParams();
@@ -12,6 +13,7 @@ function GridSearch(props) {
   const itemsPerPage = 18;
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (props.pokemonName) {
@@ -51,6 +53,7 @@ function GridSearch(props) {
         <li
           key={b.id}
           className="bg-white px-12 py-6 items-center justify-center rounded-md"
+          onClick={() => navigate(`/Single?nome=${b.name}`)}
         >
           <h1 className="text-center">{b.name}</h1>
           <img src={b.sprites.front_default} alt="" />

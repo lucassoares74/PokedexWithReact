@@ -5,15 +5,20 @@ import ColapsedMenu from "./../components/ColapsedMenu";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SingleContent from "./../components/SingleContent";
+import { useLocation } from "react-router-dom";
 
 function Single() {
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const nome = params.get("nome");
+
   const [isOpen, setisOpen] = useState(false);
   const [isOpenInput, setisOpenInput] = useState(false);
   const [Pokemon, setPokemon] = useState();
   const [PokemonEspecies, setPokemonEspecies] = useState();
   const [loading, setloading] = useState(true);
   const [EvoChain, setEvoChain] = useState();
-  const [pokemonName, setpokemonName] = useState("arcanine");
+  const [pokemonName, setpokemonName] = useState(nome);
 
   //#region fetch api
   useEffect(() => {

@@ -6,6 +6,8 @@ import GridSearch from "./../components/GridSearch";
 import Banner from "./../components/Banner";
 import Footer from "./../components/Footer";
 
+
+
 function SearchPage() {
   const [isOpen, setisOpen] = useState(false);
   const [isOpenInput, setisOpenInput] = useState(false);
