@@ -25,7 +25,7 @@ function SingleContent({ pokemonEspecies, loading, evoChain, pokemon }) {
 
   return (
     <div>
-      <div className="grid grid-cols-2 grid-rows-2 gap-4">
+      <div className="grid grid-cols-2 auto-rows-auto auto-cols-auto gap-4 ">
         <div className=" bg-white rounded-md flex place-items-center text-2xl text-center">
           <h1>
             {pokemonEspecies.flavor_text_entries[5].flavor_text.replace(
@@ -35,7 +35,9 @@ function SingleContent({ pokemonEspecies, loading, evoChain, pokemon }) {
           </h1>
         </div>
         <div>
-          <h1 className="text-black text-2xl font-semibold mb-4">stats</h1>
+          <h1 className="text-black text-2xl font-semibold mb-4 text-center">
+            Stats
+          </h1>
           <ul>
             {pokemon.stats.map((b) => (
               <li>
@@ -60,7 +62,7 @@ function SingleContent({ pokemonEspecies, loading, evoChain, pokemon }) {
           </ul>
         </div>
 
-        <div className="flex flex-col ">
+        <div className="flex flex-col place-items-center ">
           <h1 className="text-black text-2xl font-semibold mb-4">Abilities</h1>
           <div>
             <ul className="flex gap-2 text-2xl">
@@ -77,7 +79,7 @@ function SingleContent({ pokemonEspecies, loading, evoChain, pokemon }) {
           </div>
         </div>
         <div>
-          <h1 className="text-black text-2xl font-semibold mb-4">
+          <h1 className="text-black text-2xl font-semibold mb-4 text-center">
             Evolution Chain
           </h1>
           <div className="p-6 bg-white rounded-md">
@@ -86,9 +88,8 @@ function SingleContent({ pokemonEspecies, loading, evoChain, pokemon }) {
             </ul>
           </div>
         </div>
-      </div>
-      <div className="grid grid-cols-2 gap-8">
-        <div className="flex flex-col">
+
+        <div className="flex flex-col place-items-center">
           <h1 className="text-black text-2xl font-semibold mb-4">Sprites</h1>
           <div className="flex gap-8">
             <img
