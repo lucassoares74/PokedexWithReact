@@ -50,9 +50,7 @@ function Navbar(props) {
         >
           <Menu />
         </button>
-        <button>
-          <CircleUser />
-        </button>
+        <button></button>
         <div className="flex justify-center items-center ">
           <button
             onClick={() => {
@@ -68,7 +66,10 @@ function Navbar(props) {
               `text-2xl bg-white border-2 hidden` + props.searchDisplay
             }
             onChange={(event) => {
-              if (location.pathname === "/") {
+              if (
+                location.pathname === "/" ||
+                location.pathname === "/Single"
+              ) {
                 setTimeout(() => {
                   navigate(`/Search?nome=${event.target.value}`);
                 }, 500); // 500ms de atraso

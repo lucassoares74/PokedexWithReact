@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import GridSearch from "./../components/GridSearch";
 import Banner from "./../components/Banner";
+import Footer from "./../components/Footer";
 
 function SearchPage() {
   const [isOpen, setisOpen] = useState(false);
@@ -66,6 +67,7 @@ function SearchPage() {
         pokemon={loading ? {} : Pokemon}
         loading={loading}
       ></GridSearch>
+      <Footer></Footer>
     </div>
   );
 }

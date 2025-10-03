@@ -106,7 +106,7 @@ function GridSearch(props) {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center gap-5">
       <ul
         className={
           props.loading || isArr
