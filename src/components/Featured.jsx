@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 function Featured(props) {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col items-center gap-6">
       <div className="text-2xl  font-light">Featured Pokémon</div>
@@ -18,6 +21,7 @@ function Featured(props) {
             if (a.id <= 18) {
               return (
                 <li
+                  onClick={() => navigate(`/Single?nome=${a.name}`)}
                   key={a.id}
                   className="bg-white px-12 py-6 items-center justify-center rounded-md"
                 >
