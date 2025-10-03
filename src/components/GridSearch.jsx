@@ -67,6 +67,44 @@ function GridSearch(props) {
     }
   }
 
+  function _button() {
+    if (props.loading) {
+      console.log("ainda não foi");
+    } else {
+      return (
+        <div className="flex gap-3">
+          <button
+            onClick={() => {
+              setcurrentPage((prev) => Math.max(prev - 1, 0));
+              console.log("aaaaaaaaaaaaaaquiiiii: " + currentPage);
+            }}
+            className={`bg-slate-400 text-white px-4 py-2 rounded ${
+              currentPage === 0 ? "hidden" : ""
+            }`}
+          >
+            Anterior
+          </button>
+          <button
+            className={`bg-slate-400 text-white px-4 py-2 rounded ${
+              currentPage === Math.ceil(fulllist.length / itemsPerPage) - 1
+                ? "hidden"
+                : ""
+            }`}
+            onClick={() => {
+              setcurrentPage((prev) =>
+                prev + 1 < Math.ceil(fulllist.length / itemsPerPage)
+                  ? prev + 1
+                  : prev
+              );
+            }}
+          >
+            Proximo
+          </button>
+        </div>
+      );
+    }
+  }
+
   return (
     <div className="flex flex-col justify-center items-center">
       <ul
@@ -78,35 +116,7 @@ function GridSearch(props) {
       >
         {props.loading ? spinner() : grid()}
       </ul>
-      <div className="flex gap-3">
-        <button
-          onClick={() => {
-            setcurrentPage((prev) => Math.max(prev - 1, 0));
-            console.log("aaaaaaaaaaaaaaquiiiii: " + currentPage);
-          }}
-          className={`bg-slate-400 text-white px-4 py-2 rounded ${
-            currentPage === 0 ? "hidden" : ""
-          }`}
-        >
-          Anterior
-        </button>
-        <button
-          className={`bg-slate-400 text-white px-4 py-2 rounded ${
-            currentPage === Math.ceil(fulllist.length / itemsPerPage) - 1
-              ? "hidden"
-              : ""
-          }`}
-          onClick={() => {
-            setcurrentPage((prev) =>
-              prev + 1 < Math.ceil(fulllist.length / itemsPerPage)
-                ? prev + 1
-                : prev
-            );
-          }}
-        >
-          Proximo
-        </button>
-      </div>
+      {_button()}
     </div>
   );
 }
